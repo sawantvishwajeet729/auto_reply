@@ -51,16 +51,20 @@ with st.container():
         else:
             req_list = ['Name', 'Current Company', 'Position']
 
-        d = {}
+with st.container():
+    text_1, text_2 = st.columns((1, 2))
+
+    with text_1:
         with st.form(key='my_form', clear_on_submit=True):
-            
+            d = {}
             for i in req_list:
                 d["{0}".format(i)] = st.text_input(i)
-            print(d)
-            submit_button = st.form_submit_button()
+
+            submit_button = st.form_submit_button(label='Submit')
             
-            if submit_button:
-                st.write('You entered the following details are:')
+    with text_2:
+        if submit_button:
+            st.subheader('You entered the following details are:')
 
 
             '''
