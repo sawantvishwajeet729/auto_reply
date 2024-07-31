@@ -12,12 +12,18 @@ from groq import Groq
 from langchain_core.output_parsers import StrOutputParser
 import ast
 
+gro_key = st.secrets("groq_key")
 
 st.set_page_config(page_title="Chatbot", page_icon=":desktop_computer:", layout="wide")
 
+system = "You are a helpful assistant."
+human = "{text}"
+prompt = ChatPromptTemplate.from_messages([("system", system), ("human", human)])
 
-model = ChatGroq(temperature=0, groq_api_key="YOUR_API_KEY", model_name="llama-3.1-70b-versatile")
+model = ChatGroq(temperature=0, groq_api_key=gro_key, model_name="llama-3.1-70b-versatile")
+chain = prompt | model
+chain.invoke({"text": "Explain the importance of low latency LLMs."})
 
-input_txt = st.text_input('your text')
 
-st.write(model.invoke(input_txt))
+st.write(chain.invoke({"text": "Explain the importance of low latency LLMs."}))
+
