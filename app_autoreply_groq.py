@@ -42,6 +42,7 @@ with st.container():
     txt_input = st.text_area('-', height=250)
 
     response = chain.invoke({'text': txt_input})
+    print(response)
 
     # Find all matches using re.findall
     matches = re.findall(pattern, response)
