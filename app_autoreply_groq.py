@@ -59,7 +59,9 @@ with st.container():
 
         submit_button = st.form_submit_button(label='Submit')
 
-        if submit_button:
+        st.write(d)
+
+        '''if submit_button:
             st.subheader('You entered the following details are:')
 
             dict_string = ', '.join(f'{key}: {value}' for key, value in d.items())
@@ -71,3 +73,4 @@ with st.container():
             chain_2 = prompt_2 | model  | output_parser
 
             st.write(chain_2.invoke({'email_txt': txt_input, 'field_to_fill': dict_string}))
+'''
