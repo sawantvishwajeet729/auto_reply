@@ -62,7 +62,7 @@ with st.container():
             if submit_button:
             st.subheader('You entered the following details are:')
 
-'''
+            '''
             dict_string = ', '.join(f'{key}: {value}' for key, value in d.items())
             
             system_2 = "you are a email replying assistant. you have to reply to the email regarding job requirement on behalf of the user. start by thanking the sender of the email. the email which is supposed to be replied is {email_txt}. the fields to be filled are given by the user."
@@ -72,4 +72,4 @@ with st.container():
             chain_2 = prompt_2 | model  | output_parser
 
             st.write(chain_2.invoke({'email_txt': txt_input, 'field_to_fill': dict_string}))
-''''''
+            '''
