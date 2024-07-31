@@ -62,10 +62,13 @@ with st.container():
             for i in req_list:
                 d["{0}".format(i)] = st.text_input(i)
 
-            submit_button = st.form_submit_button(label='Submit')
+            if st.form_submit_button(label='Submit'):
+                first_container_completed = True
+             else:
+                first_container_completed = False
             
     with text_2:
-        if submit_button:
+        if first_container_completed:
             st.subheader('You entered the following details are:')
 
 
