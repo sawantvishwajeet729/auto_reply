@@ -30,7 +30,7 @@ output_parser=StrOutputParser()
 
 chain = prompt | model | output_parser
 
-with st.container()
+with st.container():
     input_text = st.text_input('Paste your email here')
 
     if st.button('submit'):
