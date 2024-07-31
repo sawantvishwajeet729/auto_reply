@@ -30,7 +30,9 @@ output_parser=StrOutputParser()
 
 chain = prompt | model | output_parser
 
-input_text = st.text_input('Paste your email here')
+with st.container()
+    input_text = st.text_input('Paste your email here')
 
-st.write(chain.invoke({"text": input_text}))
+    if st.button('submit'):
+        st.write(chain.invoke({"text": input_text}))
 
