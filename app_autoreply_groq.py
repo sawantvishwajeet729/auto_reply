@@ -60,7 +60,7 @@ with st.container():
             submit_button = st.form_submit_button(label='Submit')
             
             if submit_button:
-            st.subheader('You entered the following details are:')
+                st.subheader('You entered the following details are:')
 
             '''
             dict_string = ', '.join(f'{key}: {value}' for key, value in d.items())
