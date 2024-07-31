@@ -18,7 +18,6 @@ gro_key = st.secrets["groq_key"]
 # Regular expression pattern to match content within square brackets
 pattern = r"\[(.*?)\]"
 
-st.set_page_config(page_title="Chatbot", page_icon=":desktop_computer:", layout="wide")
 
 system_1 = "you are an helpful assistant. you are supposed identify if an email has fields that are to be filled by the users. return only a python list of fields to be filled by user. nothing else."
 human_1 = "{text}"
@@ -31,24 +30,28 @@ output_parser=StrOutputParser()
 chain = prompt | model | output_parser
 
 
-st.subheader('Paste your email below')
-txt_input = st.text_area('-', height=250)
-confirm = st.button('Confirm')
+st.set_page_config(page_title="Chatbot", page_icon=":desktop_computer:", layout="wide")
 
-if confirm:
-    response = chain.invoke({'text': txt_input})
-    #st.write(response)
 
-    # Find all matches using re.findall
-    matches = re.findall(pattern, response)
-    #st.write(matches)
+with st.container():
+    st.subheader('Paste your email below')
+    txt_input = st.text_area('-', height=250)
+    confirm = st.button('Confirm')
 
-    # Process matches if needed
-    if matches:
-        # Convert the string representation of the list into an actual list
-        req_list = eval(matches[0])
-    else:
-        req_list = ['Name', 'Current Company', 'Position']
+    if confirm:
+        response = chain.invoke({'text': txt_input})
+        #st.write(response)
+
+        # Find all matches using re.findall
+        matches = re.findall(pattern, response)
+        #st.write(matches)
+
+        # Process matches if needed
+        if matches:
+            # Convert the string representation of the list into an actual list
+            req_list = eval(matches[0])
+        else:
+            req_list = ['Name', 'Current Company', 'Position']
 
 with st.container():
     text_1, text_2 = st.columns((1, 2))
@@ -60,7 +63,7 @@ with st.container():
                 d["{0}".format(i)] = st.text_input(i)
 
             submit_button = st.form_submit_button(label='Submit')
-
+            
     with text_2:
         if submit_button:
             st.subheader('You entered the following details are:')
