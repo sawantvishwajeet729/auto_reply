@@ -41,7 +41,7 @@ with st.container():
     st.subheader('Paste your email below')
     txt_input = st.text_area('-', height=250)
 
-    response = chain.invoke({'input': txt_input})
+    response = chain.invoke({'text': txt_input})
 
     # Find all matches using re.findall
     matches = re.findall(pattern, response)
