@@ -53,6 +53,8 @@ with st.container():
         else:
             req_list = ['Name', 'Current Company', 'Position']
 
+        
+
 with st.container():
     text_1, text_2 = st.columns((1, 2))
 
@@ -62,13 +64,11 @@ with st.container():
             for i in req_list:
                 d["{0}".format(i)] = st.text_input(i)
 
-            if st.form_submit_button(label='Submit'):
-                first_container_completed = True
-             else:
-                first_container_completed = False
+            submit_button = st.form_submit_button(label='Submit')
+
             
     with text_2:
-        if first_container_completed:
+        if submit_button:
             st.subheader('You entered the following details are:')
 
 
