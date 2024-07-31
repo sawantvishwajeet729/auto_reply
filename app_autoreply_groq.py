@@ -54,7 +54,7 @@ with st.container():
         d = {}
 
         #with st.form(key='my_form', clear_on_submit=True):
-        form1 = st.form(key=form1)
+        form1 = st.form(key='form1')
         for i in req_list:
             d["{0}".format(i)] = st.text_input(i)
 
