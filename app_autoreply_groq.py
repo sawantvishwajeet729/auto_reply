@@ -38,11 +38,11 @@ with st.container():
 
     if confirm:
         response = chain.invoke({'text': txt_input})
-        st.write(response)
+        #st.write(response)
 
         # Find all matches using re.findall
         matches = re.findall(pattern, response)
-        st.write(matches)
+        #st.write(matches)
 
         # Process matches if needed
         if matches:
@@ -58,11 +58,11 @@ with st.container():
                 d["{0}".format(i)] = st.text_input(i)
 
             submit_button = st.form_submit_button(label='Submit')
-
-
-        '''if submit_button:
+            
+            if submit_button:
             st.subheader('You entered the following details are:')
 
+'''
             dict_string = ', '.join(f'{key}: {value}' for key, value in d.items())
             
             system_2 = "you are a email replying assistant. you have to reply to the email regarding job requirement on behalf of the user. start by thanking the sender of the email. the email which is supposed to be replied is {email_txt}. the fields to be filled are given by the user."
@@ -72,4 +72,4 @@ with st.container():
             chain_2 = prompt_2 | model  | output_parser
 
             st.write(chain_2.invoke({'email_txt': txt_input, 'field_to_fill': dict_string}))
-'''
+''''''
