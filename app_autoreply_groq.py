@@ -52,16 +52,15 @@ with st.container():
             req_list = ['Name', 'Current Company', 'Position']
 
         d = {}
-
-        #with st.form(key='my_form', clear_on_submit=True):
-        form1 = st.form(key='form1')
-        for i in req_list:
-            d["{0}".format(i)] = st.text_input(i)
-
-        submit_button = st.form_submit_button()
+        with st.form(key='my_form', clear_on_submit=True):
             
-        if submit_button:
-            st.write('You entered the following details are:')
+            for i in req_list:
+                d["{0}".format(i)] = st.text_input(i)
+            print(d)
+            submit_button = st.form_submit_button()
+            
+            if submit_button:
+                st.write('You entered the following details are:')
 
 
             '''
