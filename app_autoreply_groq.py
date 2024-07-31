@@ -22,7 +22,7 @@ st.set_page_config(page_title="Chatbot", page_icon=":desktop_computer:", layout=
 
 system_1 = "you are an email replying assistant. you are supposed to reply to the email on behalf of the user. identify if an email has fields that are to be filled by the users. return only the the fields to be filled by user in form of a python list. reply should start with thanking the sender for his email and expressing your interest in the job opening described in the email."
 human_1 = "{text}"
-prompt = ChatPromptTemplate.from_messages([("system", system), ("human", human)])
+prompt = ChatPromptTemplate.from_messages([("system", system_1), ("human", human_1)])
 
 model = ChatGroq(temperature=0, groq_api_key=gro_key, model_name="llama-3.1-70b-versatile", max_tokens=1024)
 
