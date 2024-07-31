@@ -20,7 +20,7 @@ pattern = r"\[(.*?)\]"
 
 st.set_page_config(page_title="Chatbot", page_icon=":desktop_computer:", layout="wide")
 
-system_1 = "you are an email replying assistant. you are supposed to reply to the email on behalf of the user. identify if an email has fields that are to be filled by the users. return only the the fields to be filled by user in form of a python list. reply should start with thanking the sender for his email and expressing your interest in the job opening described in the email."
+system_1 = "you are an helpful assistant. you are supposed identify if an email has fields that are to be filled by the users. return only the the fields to be filled by user in form of a python list."
 human_1 = "{text}"
 prompt = ChatPromptTemplate.from_messages([("system", system_1), ("human", human_1)])
 
@@ -65,5 +65,12 @@ with st.container():
         if submit_button:
             st.subheader('You entered the following details are:')
 
-            for i in d:
-                st.write(i, ' : ' ,d[i])
+            dict_string = ', '.join(f'{key}: {value}' for key, value in d.items())
+            
+            system_2 = "you are a email replying assistant. you have to reply to the email regarding job requirement on behalf of the user. start by thanking the sender of the email. the email which is supposed to be replied is {email_txt}. the fields to be filled are given by the user."
+            human_2 = "{field_to_fill}"
+            prompt_2 = ChatPromptTemplate.from_messages([("system", system_2), ("human", human_2)])
+
+            chain_2 = prompt_2 | model  | output_parser
+
+            st.write(chain_2.invoke({'email_txt': txt_input, 'field_to_fill': dict_string}))
