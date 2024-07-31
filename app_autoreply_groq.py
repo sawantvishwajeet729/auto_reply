@@ -24,7 +24,7 @@ system = "you are an email replying assistant. you are supposed to reply to the 
 human = "{text}"
 prompt = ChatPromptTemplate.from_messages([("system", system), ("human", human)])
 
-model = ChatGroq(temperature=0, groq_api_key=gro_key, model_name="llama-3.1-70b-versatile")
+model = ChatGroq(temperature=0, groq_api_key=gro_key, model_name="llama-3.1-70b-versatile", max_tokens=1024)
 
 output_parser=StrOutputParser()
 
