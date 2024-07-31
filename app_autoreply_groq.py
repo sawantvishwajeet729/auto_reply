@@ -20,8 +20,8 @@ pattern = r"\[(.*?)\]"
 
 st.set_page_config(page_title="Chatbot", page_icon=":desktop_computer:", layout="wide")
 
-system = "you are an email replying assistant. you are supposed to reply to the email on behalf of the user. identify if an email has fields that are to be filled by the users. return only the the fields to be filled by user in form of a python list. reply should start with thanking the sender for his email and expressing your interest in the job opening described in the email."
-human = "{text}"
+system_1 = "you are an email replying assistant. you are supposed to reply to the email on behalf of the user. identify if an email has fields that are to be filled by the users. return only the the fields to be filled by user in form of a python list. reply should start with thanking the sender for his email and expressing your interest in the job opening described in the email."
+human_1 = "{text}"
 prompt = ChatPromptTemplate.from_messages([("system", system), ("human", human)])
 
 model = ChatGroq(temperature=0, groq_api_key=gro_key, model_name="llama-3.1-70b-versatile", max_tokens=1024)
@@ -30,29 +30,24 @@ output_parser=StrOutputParser()
 
 chain = prompt | model | output_parser
 
-'''with st.container():
-    input_text = st.text_input('Paste your email here')
-
-    if st.button('submit'):
-        st.write(chain.invoke({"text": input_text}))
-'''
 
 with st.container():
     st.subheader('Paste your email below')
     txt_input = st.text_area('-', height=250)
+    
 
-    response = chain.invoke({'text': txt_input})
-    st.write(response)
+    if st.button('Confirm'):
+        response = chain.invoke({'text': txt_input})
 
-    # Find all matches using re.findall
-    matches = re.findall(pattern, response)
+        # Find all matches using re.findall
+        matches = re.findall(pattern, response)
 
-    # Process matches if needed
-    if matches:
-        # Convert the string representation of the list into an actual list
-        req_list = eval(matches[0])
-    else:
-        req_list = ['Name', 'Current Company', 'Position']
+        # Process matches if needed
+        if matches:
+            # Convert the string representation of the list into an actual list
+            req_list = eval(matches[0])
+        else:
+            req_list = ['Name', 'Current Company', 'Position']
 
 
 with st.container():
