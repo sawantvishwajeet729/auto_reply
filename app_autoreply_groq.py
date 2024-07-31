@@ -60,9 +60,9 @@ with st.container():
                 d["{0}".format(i)] = st.text_input(i)
 
             submit_button = st.form_submit_button(label='Submit')
-
-    with text_2:
-        if submit_button:
+    if submit_button:
+        with text_2:
+        
             st.subheader('You entered the following details are:')
 
             dict_string = ', '.join(f'{key}: {value}' for key, value in d.items())
