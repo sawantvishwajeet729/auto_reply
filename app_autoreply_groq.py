@@ -20,7 +20,7 @@ pattern = r"\[(.*?)\]"
 
 st.set_page_config(page_title="Chatbot", page_icon=":desktop_computer:", layout="wide")
 
-system_1 = "you are an helpful assistant. you are supposed identify if an email has fields that are to be filled by the users. return only the the fields to be filled by user in form of a python list."
+system_1 = "you are an helpful assistant. you are supposed identify if an email has fields that are to be filled by the users. return only a python list of fields to be filled by user. nothing else."
 human_1 = "{text}"
 prompt = ChatPromptTemplate.from_messages([("system", system_1), ("human", human_1)])
 
@@ -38,6 +38,7 @@ with st.container():
 
     if confirm:
         response = chain.invoke({'text': txt_input})
+        st.write(response)
 
         # Find all matches using re.findall
         matches = re.findall(pattern, response)
