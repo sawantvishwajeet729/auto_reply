@@ -58,9 +58,12 @@ with st.container():
                 d["{0}".format(i)] = st.text_input(i)
 
             submit_button = st.form_submit_button('Submit')
+            st.write(submit_button)
             
             if submit_button:
                 st.write('You entered the following details are:')
+            else:
+                st.write('not submit')
 
             '''
             dict_string = ', '.join(f'{key}: {value}' for key, value in d.items())
