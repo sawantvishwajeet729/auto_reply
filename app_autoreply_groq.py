@@ -34,9 +34,9 @@ chain = prompt | model | output_parser
 with st.container():
     st.subheader('Paste your email below')
     txt_input = st.text_area('-', height=250)
-    
+    confirm = st.button('Confirm')
 
-    if st.button('Confirm'):
+    if confirm:
         response = chain.invoke({'text': txt_input})
 
         # Find all matches using re.findall
