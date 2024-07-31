@@ -30,9 +30,44 @@ output_parser=StrOutputParser()
 
 chain = prompt | model | output_parser
 
-with st.container():
+'''with st.container():
     input_text = st.text_input('Paste your email here')
 
     if st.button('submit'):
         st.write(chain.invoke({"text": input_text}))
+'''
 
+with st.container():
+    st.subheader('Paste your email below')
+    txt_input = st.text_area('-', height=250)
+
+    response = chain.invoke({'input': txt_input})
+
+    # Find all matches using re.findall
+    matches = re.findall(pattern, response)
+
+    # Process matches if needed
+    if matches:
+        # Convert the string representation of the list into an actual list
+        req_list = eval(matches[0])
+    else:
+        req_list = ['Name', 'Current Company', 'Position']
+
+
+with st.container():
+    text_1, text_2 = st.columns((1, 2))
+
+    with text_1:
+        with st.form(key='my_form', clear_on_submit=True):
+            d = {}
+            for i in req_list:
+                d["{0}".format(i)] = st.text_input(i)
+
+            submit_button = st.form_submit_button(label='Submit')
+
+    with text_2:
+        if submit_button:
+            st.subheader('You entered the following details are:')
+
+            for i in d:
+                st.write(i, ' : ' ,d[i])
