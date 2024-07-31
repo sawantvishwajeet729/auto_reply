@@ -12,7 +12,7 @@ from groq import Groq
 from langchain_core.output_parsers import StrOutputParser
 import ast
 
-gro_key = st.secrets("groq_key")
+gro_key = st.secrets["groq_key"]
 
 st.set_page_config(page_title="Chatbot", page_icon=":desktop_computer:", layout="wide")
 
