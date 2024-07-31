@@ -38,6 +38,7 @@ with st.container():
 
     if confirm:
         response = chain.invoke({'text': txt_input})
+        st.write(response)
 
         # Find all matches using re.findall
         matches = re.findall(pattern, response)
