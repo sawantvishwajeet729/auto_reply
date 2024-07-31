@@ -40,7 +40,7 @@ groq_api_Key = st.secrets["groq_key"]
 st.set_page_config(page_title="Chatbot", page_icon=":desktop_computer:", layout="wide")
 
 #ChatGPT model
-model=Groq(model="llama-3.1-70b-versatile", groq_api_key = groq_api_Key
+model=Groq(model="llama-3.1-70b-versatile", groq_api_key = groq_api_Key,
            temperature=1,
            max_tokens=1024,
            top_p=1,
