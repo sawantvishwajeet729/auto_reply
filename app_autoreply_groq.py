@@ -67,7 +67,9 @@ if confirm:
                     d["{0}".format(i)] = st.text_input(i)
 
                 submit_button = st.form_submit_button(label='Submit')
-
+                
+                if submit_button:
+                    st.write('hello')
 
         with text_2:
             st.subheader('second column')
