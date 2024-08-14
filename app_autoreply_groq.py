@@ -68,13 +68,10 @@ if confirm:
 
                 submit_button = st.form_submit_button(label='Submit')
 
-                if submit_button:
-                    st.subheader('You entered the following details are:')
 
-
-
-          
-        '''with text_2:
+        with text_2:
+            st.subheader('second column')
+            
             if submit_button:
                 st.subheader('You entered the following details are:')
 
