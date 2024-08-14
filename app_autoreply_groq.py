@@ -71,13 +71,13 @@ if confirm:
 
         with text_2:
             st.subheader('second column')
-            
+
             if submit_button:
                 st.subheader('You entered the following details are:')
 
 
                 
-                dict_string = ', '.join(f'{key}: {value}' for key, value in d.items())
+                '''dict_string = ', '.join(f'{key}: {value}' for key, value in d.items())
                 
                 system_2 = "you are a email replying assistant. you have to reply to the email regarding job requirement on behalf of the user. start by thanking the sender of the email. the email which is supposed to be replied is {email_txt}. the fields to be filled are given by the user."
                 human_2 = "{field_to_fill}"
