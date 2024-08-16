@@ -13,8 +13,7 @@ from langchain_core.output_parsers import StrOutputParser
 import ast
 
 #set groq key
-#gro_key = st.secrets["groq_key"]
-gro_key = "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"
+gro_key = st.secrets["groq_key"]
 
 # Regular expression pattern to match content within square brackets
 pattern = r"\[(.*?)\]"
@@ -67,9 +66,6 @@ if confirm:
                     d["{0}".format(i)] = st.text_input(i)
 
                 submit_button = st.form_submit_button(label='Submit')
-
-                if submit_button:
-                    st.write("slider", d[0], "checkbox", d[1])
                 
 
         with text_2:
